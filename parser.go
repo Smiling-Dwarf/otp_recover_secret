@@ -19,4 +19,10 @@ func main() {
 		return
 	}
 	fmt.Println(decodedValue)
+	otp_keys := &MigrationPayload{}
+	err = proto.Unmarshal([]byte(decodedValue), otp_keys)
+	if err != nil {
+		log.Fatal("unmarshaling error: ", err)
+	}
+	fmt.Println(otp_keys.GetOtpParameters())
 }

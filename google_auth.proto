@@ -3,8 +3,6 @@ syntax = "proto3";
 
 package main;
 
-option go_package = "smilingdwarf.com/otp/parser";
-
 message MigrationPayload {
   enum Algorithm {
     ALGORITHM_UNSPECIFIED = 0;
