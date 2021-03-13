@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"os"
+	"reflect"
 	"net/url"
+	"encoding/base32"
+	"encoding/base64"
 	"log"
 	"strings"
 	"github.com/golang/protobuf/proto"
@@ -19,10 +22,27 @@ func main() {
 		return
 	}
 	fmt.Println(decodedValue)
+	sDec, err := base64.StdEncoding.DecodeString(decodedValue)
+	if err != nil {
+		fmt.Printf("Error decoding string: %s ", err.Error())
+		return
+	}
+
 	otp_keys := &MigrationPayload{}
-	err = proto.Unmarshal([]byte(decodedValue), otp_keys)
+	err = proto.Unmarshal([]byte(sDec), otp_keys)
 	if err != nil {
 		log.Fatal("unmarshaling error: ", err)
 	}
-	fmt.Println(otp_keys.GetOtpParameters())
+	msg := otp_keys.GetOtpParameters()[0]
+	fmt.Println(msg)
+	fmt.Println(msg.GetSecret())
+	str := base32.StdEncoding.EncodeToString(msg.GetSecret())
+	fmt.Println(str)
+	// for i, msg := msgs {
+	// 	fmt.Println(msg)
+	// 	//fmt.Println(msg.GetSecret())
+	// }
+	fmt.Println("=============================")
+	fmt.Println(reflect.TypeOf(msg))
+	fmt.Println("=============================")
 }
