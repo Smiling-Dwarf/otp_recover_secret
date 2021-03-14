@@ -35,7 +35,7 @@ Building
 
 Clean the generated file:
 
-    rm google_auth.pb.go
+    rm -fr generated
 
 Generate fresh bindings:
 
@@ -46,3 +46,8 @@ Now build the executable:
     go install smilingdwarf.com/otp/otp_recovery
 
 You should find it in `$GOROOT/bin`
+
+Acknowledgment
+--------------
+
+A big "thank you" to "Alexander Bakker":https://alexbakker.me/post/parsing-google-auth-export-qr-code.html from project "Aegis Authenticator":https://github.com/beemdevelopment/Aegis/ to have find a correct proto file for Google Authenticator QRCode.
