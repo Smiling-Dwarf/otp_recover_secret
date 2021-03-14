@@ -32,6 +32,6 @@ func main() {
 	for i, msg := range otp_keys.GetOtpParameters() {
 		fmt.Printf("Record %d : %s\n", i, msg)
 		readableSecret := base32.StdEncoding.EncodeToString(msg.GetSecret())
-		fmt.Println(readableSecret)
+		fmt.Printf("%s\n\n", readableSecret)
 	}
 }
