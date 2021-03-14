@@ -24,4 +24,25 @@ Pass the "data" value to the binary. You'll get the description of the record on
     Record 1 : secret:"\x03]3\x922t\xb6(\xef\x8a\xde\x0cF\xa2\x92"  name:"Fake GA 2"  algorithm:ALGORITHM_SHA1  digits:DIGIT_COUNT_SIX  type:OTP_TYPE_TOTP
     ANOTHERSOS3CR34K3YGENIUS
     
+Building
+--------
 
+1. Checkout the repository
+2. Fetch the dependencies
+   You'll need the `protoc` executable:
+
+    go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
+
+Clean the generated file:
+
+    rm google_auth.pb.go
+
+Generate fresh bindings:
+
+    protoc --go_out=. *.proto
+
+Now build the executable:
+
+    go install smilingdwarf.com/otp/otp_recovery
+
+You should find it in `$GOROOT/bin`
