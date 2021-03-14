@@ -1,4 +1,4 @@
-module smilingdwarf.com/otp/parser
+module smilingdwarf.com/otp/otp_recovery
 
 go 1.16
 
