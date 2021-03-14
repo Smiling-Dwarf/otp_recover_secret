@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"reflect"
 	"net/url"
 	"encoding/base32"
 	"encoding/base64"
@@ -13,15 +12,12 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello, world.")
 	argsWithoutProg := os.Args[1:]
-	fmt.Println(argsWithoutProg)
 	decodedValue, err := url.QueryUnescape(strings.Join(argsWithoutProg, " "))
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
-	fmt.Println(decodedValue)
 	sDec, err := base64.StdEncoding.DecodeString(decodedValue)
 	if err != nil {
 		fmt.Printf("Error decoding string: %s ", err.Error())
@@ -33,16 +29,9 @@ func main() {
 	if err != nil {
 		log.Fatal("unmarshaling error: ", err)
 	}
-	msg := otp_keys.GetOtpParameters()[0]
-	fmt.Println(msg)
-	fmt.Println(msg.GetSecret())
-	str := base32.StdEncoding.EncodeToString(msg.GetSecret())
-	fmt.Println(str)
-	// for i, msg := msgs {
-	// 	fmt.Println(msg)
-	// 	//fmt.Println(msg.GetSecret())
-	// }
-	fmt.Println("=============================")
-	fmt.Println(reflect.TypeOf(msg))
-	fmt.Println("=============================")
+	for i, msg := range otp_keys.GetOtpParameters() {
+		fmt.Printf("Record %d : %s\n", i, msg)
+		readableSecret := base32.StdEncoding.EncodeToString(msg.GetSecret())
+		fmt.Println(readableSecret)
+	}
 }
