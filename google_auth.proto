@@ -1,7 +1,9 @@
 // Borrowed from https://raw.githubusercontent.com/beemdevelopment/Aegis/39f18b79cb4d5b09f9c98692bca88532f93edb31/app/src/main/proto/google_auth.proto
 syntax = "proto3";
 
-package main;
+package generated;
+
+option go_package = "./generated";
 
 message MigrationPayload {
   enum Algorithm {

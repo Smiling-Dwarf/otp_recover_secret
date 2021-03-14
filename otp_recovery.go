@@ -9,6 +9,8 @@ import (
 	"log"
 	"strings"
 	"github.com/golang/protobuf/proto"
+
+	"smilingdwarf.com/otp/otp_recovery/generated"
 )
 
 func main() {
@@ -24,7 +26,7 @@ func main() {
 		return
 	}
 
-	otp_keys := &MigrationPayload{}
+	otp_keys := &generated.MigrationPayload{}
 	err = proto.Unmarshal([]byte(sDec), otp_keys)
 	if err != nil {
 		log.Fatal("unmarshaling error: ", err)
