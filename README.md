@@ -29,10 +29,14 @@ Building
 
 1. Checkout the repository
 2. Fetch the dependencies
-   You'll need the `protoc` executable:
+   You'll need the protocol buffer dependencies and executable:
 
+    go get google.golang.org/protobuf/reflect/protoreflect
+    go get google.golang.org/protobuf/runtime/protoimpl
     go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
 
+You can use the Makefile (`make install`) or process by hand:
+ 
 Clean the generated file:
 
     rm -fr generated
